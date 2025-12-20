@@ -1,55 +1,40 @@
-🍳 Smart Recipe AI
+# 🍲 Smart Recipe Explorer with AI Assistance
 
-Smart Recipe AI is an AI-powered web app that suggests delicious recipes based on the ingredients you have! No more “what to cook today?” dilemmas — just enter your ingredients and let the AI do the magic. ✨
+A FastAPI-based backend application for managing recipes, searching/filtering them, and enhancing user experience with free Generative AI integration via Hugging Face.
 
-🚀 Features
+---
 
-🥕 Ingredient-Based Suggestions: Enter what’s in your kitchen and get creative recipes.
+## ✨ Features
 
-🍽️ Recipe Details: Step-by-step instructions, cooking time, and nutritional info.
+- **Recipe Management**
+  - Create, read, update, and delete recipes
+  - Store ingredients, steps, cuisine, difficulty, tags, and more
+  - SQLite database for persistence
 
-🤖 AI-Powered Recommendations: Suggests recipes intelligently based on your inputs.
+- **Search & Filtering**
+  - Keyword search across recipe titles, cuisines, and descriptions
+  - Semantic search using embeddings (`sentence-transformers/all-MiniLM-L6-v2`)
+  - Filter recipes by cuisine, difficulty, or tags
 
-📱 Responsive Design: Works perfectly on desktop, tablet, and mobile.
+- **AI Integration**
+  - Generate recipe titles (`/ai/suggest-title`)
+  - Create semantic embeddings (`/ai/embed`)
+  - Powered by Hugging Face Inference API (via `https://router.huggingface.co`)
 
-🛠️ Tech Stack
-Frontend	Backend	AI/ML	Deployment
-HTML, CSS, JS	Python, Flask	Optional AI model	Render, Gunicorn
-📂 Project Structure
-recipe-app/
-│
-├── app.py               # Main Flask app
-├── templates/           # HTML templates
-├── static/              # CSS, JS, images
-├── requirements.txt     # Python dependencies
-├── Procfile             # Render deployment config
-└── runtime.txt          # Python version for Render
+- **Interactive API Docs**
+  - Swagger UI available at `/docs`
+  - ReDoc available at `/redoc`
 
-💻 Local Setup
+---
 
-Clone the repository
+## 🛠️ Tech Stack
 
-git clone <YOUR_REPO_URL>
-cd recipe-app
+- **Backend Framework**: FastAPI
+- **Database**: SQLite with SQLModel
+- **AI Services**: Hugging Face Inference API
+- **Environment Management**: Python `dotenv`
+- **Server**: Uvicorn
 
+---
 
-Create and activate virtual environment
-
-python -m venv venv
-source venv/bin/activate    # Linux/Mac
-venv\Scripts\activate       # Windows
-
-
-Install dependencies
-
-pip install -r requirements.txt
-
-
-Run the app
-
-python app.py
-
-
-Open in your browser
-
-http://127.0.0.1:5000
+## 📂 Project Structure
