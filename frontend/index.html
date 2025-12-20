@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Recipe AI</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🍳 Smart Recipe AI</h1>
+
+<div class="container">
+
+    <!-- CREATE RECIPE -->
+    <div class="card">
+        <h2>➕ Create Recipe</h2>
+        <input id="name" placeholder="Recipe Name">
+        <input id="cuisine" placeholder="Cuisine">
+        <textarea id="ingredients" placeholder="Ingredients"></textarea>
+        <input id="time" type="number" placeholder="Cooking Time (minutes)">
+        <textarea id="instructions" placeholder="Instructions"></textarea>
+
+        <button onclick="createRecipe()">Create Recipe</button>
+        <pre id="createOutput"></pre>
+    </div>
+
+    <!-- SEARCH RECIPE -->
+    <div class="card">
+        <h2>🔍 Search Recipes</h2>
+        <input id="searchQuery" placeholder="Search by name / ingredient">
+        <button onclick="searchRecipes()">Search</button>
+        <pre id="searchOutput"></pre>
+    </div>
+
+    <!-- AI ENHANCE -->
+    <div class="card">
+        <h2>🤖 AI Enhance Recipe</h2>
+        <textarea id="aiText" placeholder="Paste recipe text here"></textarea>
+        <button onclick="enhanceRecipe()">Enhance with AI</button>
+        <pre id="aiOutput"></pre>
+    </div>
+
+</div>
+
+<script>
+const BASE_URL = "http://127.0.0.1:8000";
+
+/* CREATE RECIPE */
+async function createRecipe() {
+    const data = {
+        name: document.getElementById("name").value,
+        cuisine: document.getElementById("cuisine").value,
+        ingredients: document.getElementById("ingredients").value,
+        cooking_time: parseInt(document.getElementById("time").value),
+        instructions: document.getElementById("instructions").value
+    };
+
+    const res = await fetch(`${BASE_URL}/recipes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+    document.getElementById("createOutput").textContent =
+        JSON.stringify(result, null, 2);
+}
+
+/* SEARCH RECIPES */
+async function searchRecipes() {
+    const query = document.getElementById("searchQuery").value;
+
+    const res = await fetch(
+        `${BASE_URL}/recipes/search?query=${encodeURIComponent(query)}`
+    );
+
+    const result = await res.json();
+    document.getElementById("searchOutput").textContent =
+        JSON.stringify(result, null, 2);
+}
+
+/* AI ENHANCE (FIXED – QUERY PARAM) */
+async function enhanceRecipe() {
+    const text = document.getElementById("aiText").value;
+
+    document.getElementById("aiOutput").textContent = "Enhancing recipe...";
+
+    const res = await fetch(
+        `${BASE_URL}/recipes/ai-enhance?recipe_text=${encodeURIComponent(text)}`,
+        { method: "POST" }
+    );
+
+    const result = await res.json();
+    document.getElementById("aiOutput").textContent =
+        result.enhanced_recipe || "Error occurred";
+}
+</script>
+
+</body>
+</html>
+
