@@ -37,4 +37,5 @@ A FastAPI-based backend application for managing recipes, searching/filtering th
 
 ---
 
-## 📂 Project Structure
+
+
