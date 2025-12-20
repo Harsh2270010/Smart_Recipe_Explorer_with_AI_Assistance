@@ -1,6 +1,6 @@
 # 🍲 Smart Recipe Explorer with AI Assistance
 
-A FastAPI-based backend application for managing recipes, searching/filtering them, and enhancing user experience with free Generative AI integration via Hugging Face.
+A FastAPI-based backend application for managing recipes, searching/filtering them, and enhancing user experience with free Generative AI integration via Groq API.
 
 ---
 
@@ -13,13 +13,13 @@ A FastAPI-based backend application for managing recipes, searching/filtering th
 
 - **Search & Filtering**
   - Keyword search across recipe titles, cuisines, and descriptions
-  - Semantic search using embeddings (`sentence-transformers/all-MiniLM-L6-v2`)
+  - Semantic search 
   - Filter recipes by cuisine, difficulty, or tags
 
 - **AI Integration**
   - Generate recipe titles (`/ai/suggest-title`)
   - Create semantic embeddings (`/ai/embed`)
-  - Powered by Hugging Face Inference API (via `https://router.huggingface.co`)
+  - Powered by Grok API 
 
 - **Interactive API Docs**
   - Swagger UI available at `/docs`
@@ -31,11 +31,12 @@ A FastAPI-based backend application for managing recipes, searching/filtering th
 
 - **Backend Framework**: FastAPI
 - **Database**: SQLite with SQLModel
-- **AI Services**: Hugging Face Inference API
+- **AI Services**: Groq API
 - **Environment Management**: Python `dotenv`
 - **Server**: Uvicorn
 
 ---
+
 
 
 
