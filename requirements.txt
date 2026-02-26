@@ -1,0 +1,19 @@
+# FastAPI Backend
+fastapi
+uvicorn
+
+# Database
+sqlalchemy
+
+# Pydantic (FastAPI dependency)
+pydantic
+
+# Environment Variables
+python-dotenv
+
+# LangChain + Groq
+langchain
+langchain-core
+langchain-groq
+groq
+
